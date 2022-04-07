@@ -13,5 +13,13 @@
   text-align: center;
   margin: 5px;
 }
-.btn-comprar {
+/* .btn-comprar {
+} */
+.img-product {
+  height: 260px;
+  width: 100%;
+  object-fit: scale-down;
 }
+
+
+
