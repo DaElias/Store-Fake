@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![alt text](https://api.cloudinary.com/v1_1/dy5wl8c6k/image/download?api_key=822722697592153&attachment=true&audit_context=eyJhY3Rvcl90eXBlIjoidXNlciIsImFjdG9yX2lkIjoiMjYwNWRjOTY2N2QwZTNkYWY2MzBhM2E4OTdiMzk4MjUiLCJ1c2VyX2V4dGVybmFsX2lkIjoiMGI4ZmFjMzc3YTBhZWVkMzI4NmQwZTAzOTc4OGExIiwidXNlcl9jdXN0b21faWQiOiJkYXZpZ)
+![alt text](https://res.cloudinary.com/dy5wl8c6k/image/upload/v1649303448/Captura_de_Pantalla_2022-04-06_a_la_s_10.49.45_p.m._bb2u2t.png)
 
 
 ## Available Scripts
