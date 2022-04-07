@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Fake Store
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+![My image](https://api.cloudinary.com/v1_1/dy5wl8c6k/image/download?api_key=822722697592153&attachment=true&audit_context=eyJhY3Rvcl90eXBlIjoidXNlciIsImFjdG9yX2lkIjoiMjYwNWRjOTY2N2QwZTNkYWY2MzBhM2E4OTdiMzk4MjUiLCJ1c2VyX2V4dGVybmFsX2lkIjoiMGI4ZmFjMzc3YTBhZWVkMzI4NmQwZTAzOTc4OGExIiwidXNlcl9jdXN0b21faWQiOiJkYXZpZ)
+
 
 ## Available Scripts
 
