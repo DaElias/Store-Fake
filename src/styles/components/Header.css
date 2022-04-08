@@ -1,0 +1,19 @@
+.container-nav{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    background-color: rgb(46, 41, 41);
+    color: white;
+}
+
+.container-nav ul{
+    margin-left: 20px;
+    list-style: none;
+} 
+
+ul li{
+    margin: 10px 20px 0px 20px;
+}
+.container-ul{
+}
