@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AppContex from "../context/AppContex";
-import { Col, Row, ListGroup, Container } from "react-bootstrap";
+import { Col, Row, ListGroup, Container, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
+import MyVerticallyCenteredModal from "../styles/MyVerticallyCenteredModal";
 import "../styles/components/Checkout.css";
 
 const Checkout = () => {
@@ -13,6 +14,10 @@ const Checkout = () => {
     state: { cart },
     removeFromCart,
   } = useContext(AppContex);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleRemove = (product) => {
     removeFromCart(product);
@@ -23,6 +28,25 @@ const Checkout = () => {
       acumulador + currentValue.price;
     return cart.reduce(reducer, 0);
   };
+
+  //** Valida si los elementos del carrito estan repetidos */
+  const handlePintar = () => {
+    const registro = [];
+    const salida = [];
+    cart.forEach((item) => {
+      if (!registro.includes(item)) {
+        registro.push(item);
+        salida.push({ ...item, amount: 1 });
+      } else {
+        salida.forEach((item2, key) => {
+          if (item.id === item2.id) {
+            salida[key].amount += 1;
+          }
+        });
+      }
+    });
+    return salida;
+  };
   return (
     <>
       <Header />
@@ -32,12 +56,12 @@ const Checkout = () => {
             <h2>Lista de Pedidos</h2>
             <ListGroup>
               {cart.length > 0 ? (
-                cart.map((item, index) => {
+                handlePintar().map((item, index) => {
                   return (
                     <ListGroup.Item key={index}>
-                      {item.title}
+                      {item.title} {item.amount > 1 && " x " + item.amount}
                       <span className="Checkout-list-preice">
-                        <b> ${item.price} </b>
+                        <b> ${item.price * parseInt(item.amount)}</b>
                         <button
                           className="btnEliminar"
                           onClick={() => handleRemove(item)}
@@ -45,12 +69,43 @@ const Checkout = () => {
                           {/* <span> Eliminar </span> */}
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
+                        {item.amount > 1 && (
+                          <>
+                            <button className="btnEliminar">
+                              <FontAwesomeIcon
+                                icon={faPen}
+                                onClick={handleShow}
+                              />
+                            </button>
+                            <Modal show={show} onHide={handleClose}>
+                              <Modal.Header closeButton>
+                                <Modal.Title>Modal heading</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                Woohoo, you're reading this text in a modal!
+                              </Modal.Body>
+                              <Modal.Footer>
+                                <Button
+                                  variant="secondary"
+                                  onClick={handleClose}
+                                >
+                                  Close
+                                </Button>
+                                <Button variant="primary" onClick={handleClose}>
+                                  Save Changes
+                                </Button>
+                              </Modal.Footer>
+                            </Modal>
+                          </>
+                        )}
                       </span>
                     </ListGroup.Item>
                   );
                 })
               ) : (
-                <h3>No hay elementos en el carrito... 🥲 </h3>
+                <>
+                  <h3>No hay elementos en el carrito... 🥲 </h3>
+                </>
               )}
             </ListGroup>
           </Col>
