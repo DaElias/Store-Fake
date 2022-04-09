@@ -6,27 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-import MyVerticallyCenteredModal from "../styles/MyVerticallyCenteredModal";
 import "../styles/components/Checkout.css";
 
 const Checkout = () => {
   const {
     state: { cart },
     removeFromCart,
+    handleSumTotal
   } = useContext(AppContex);
-
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handleRemove = (product) => {
     removeFromCart(product);
-  };
-
-  const handleSumTotal = () => {
-    const reducer = (acumulador, currentValue) =>
-      acumulador + currentValue.price;
-    return cart.reduce(reducer, 0);
   };
 
   //** Valida si los elementos del carrito estan repetidos */
@@ -74,10 +65,10 @@ const Checkout = () => {
                             <button className="btnEliminar">
                               <FontAwesomeIcon
                                 icon={faPen}
-                                onClick={handleShow}
+                                onClick={() => setShow(true)}
                               />
                             </button>
-                            <Modal show={show} onHide={handleClose}>
+                            <Modal show={show} onHide={() => setShow(false)}>
                               <Modal.Header closeButton>
                                 <Modal.Title>Modal heading</Modal.Title>
                               </Modal.Header>
@@ -87,11 +78,14 @@ const Checkout = () => {
                               <Modal.Footer>
                                 <Button
                                   variant="secondary"
-                                  onClick={handleClose}
+                                  onClick={() => setShow(false)}
                                 >
                                   Close
                                 </Button>
-                                <Button variant="primary" onClick={handleClose}>
+                                <Button
+                                  variant="primary"
+                                  onClick={() => setShow(false)}
+                                >
                                   Save Changes
                                 </Button>
                               </Modal.Footer>
