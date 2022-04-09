@@ -1,10 +1,15 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AppContex from "../context/AppContex";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCartFlatbed} from "@fortawesome/free-solid-svg-icons"
+import { faCartFlatbed } from "@fortawesome/free-solid-svg-icons";
 import "../styles/components/Header.css";
 const Header = () => {
+  const {
+    state: { cart },
+  } = React.useContext(AppContex);
+
   return (
     // <nav className="container-nav">
     //     <h1>Store Fake</h1>
@@ -31,10 +36,9 @@ const Header = () => {
       <Container>
         <Navbar.Brand style={{ fontSize: "30px" }} href="/">
           <b>
-            {" "}
             <Link to="/" className="link-Style-rout">
               Fake Store
-            </Link>{" "}
+            </Link>
           </b>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -51,11 +55,16 @@ const Header = () => {
               <NavDropdown.Divider />
             </NavDropdown> */}
             <Nav.Link style={{ position: "absolute", right: "20%" }}></Nav.Link>
-            <Nav.Link href="/checkout">
-              <Link to="/checkout" className="link-Style-rout">
-                Checkout
+            <Nav.Link>
+              <Link to="/checkout" className="link-Style-rout" title="Checkout">
+                <b>Checkout</b>
                 <FontAwesomeIcon icon={faCartFlatbed} />
-              </Link>{" "}
+                {cart.length !== 0 && (
+                  <Badge bg="secondary" pill style={{ marginLeft: "5px" }}>
+                    {cart.length}
+                  </Badge>
+                )}
+              </Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

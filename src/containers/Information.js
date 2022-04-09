@@ -44,7 +44,7 @@ const Information = () => {
             <div className="Information-item">
               <div className="Information-element">
                 <h4>
-                  Item name <spam>10 $</spam>
+                  Item name <b> 10 $</b>
                 </h4>
               </div>
             </div>

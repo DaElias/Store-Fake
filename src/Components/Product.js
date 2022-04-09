@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-const Product = ({ product }) => {
+const Product = ({ product, handleAddToCart }) => {
   return (
     <Card className="container-product">
       <Card.Img src={product.image} className="img-product" />
@@ -10,8 +10,12 @@ const Product = ({ product }) => {
           <span> {product.price}$</span>
         </Card.Title>
         <Card.Text>{product.description}</Card.Text>
-        <Button className="btn-comprar" variant="primary">
-          Comprar
+        <Button
+          className="btn-comprar"
+          variant="primary"
+          onClick={() => handleAddToCart(product)}
+        >
+          Agregar al Carrito
         </Button>
       </Card.Body>
     </Card>
