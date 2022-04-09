@@ -1,10 +1,10 @@
 import React, { useRef, useContext, useEffect } from "react";
 import AppContex from "../context/AppContex";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
-
+import TablaProductos from "../Components/TablaProductos"
 const initialState = {
   name: "",
   email: "",
@@ -73,18 +73,14 @@ const formularioReducer = (state, acction) => {
 
 const Information = () => {
   const {
-    state: { cart },
     handleSumTotal,
     addToBuyer,
   } = useContext(AppContex);
   const form = useRef(null);
-  let navigate = useNavigate();
-
+  const navigate = useNavigate(); // redirecciones desde js
   const [state, dispatch] = React.useReducer(formularioReducer, initialState);
   const handleFormUpdate = (event) => {
-    const type = event.target.name;
-    const payload = event.target.value;
-    dispatch({ type, payload });
+    dispatch({ type: event.target.name, payload: event.target.value });
   };
 
   useEffect(() => {
@@ -124,14 +120,14 @@ const Information = () => {
     };
     addToBuyer(buyed);
     localStorage.setItem("buyed", JSON.stringify(buyed));
-    navigate("/checkout/success"); //redirecciona cuando el pago este listo!!
+    navigate("/checkout/payment"); //redirecciona cuando el pago este listo!!
   };
 
   return (
     <>
       <Header />
       <Container>
-        <div className="Information padding-top">
+        <div className="Information padding-top padding-bottom">
           <div className="Information-content">
             <div className="Information-head">
               <h2>Informacion de contacto</h2>
@@ -239,38 +235,7 @@ const Information = () => {
               </form>
             </div>
           </div>
-          <div className="Information-sidebar ">
-            <h3>Pedido:</h3>
-            <div className="Information-item">
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cart.map((item, key) => (
-                    <tr key={key}>
-                      <td>{key}</td>
-                      <td>{item.title}</td>
-                      <td>{item.price}</td>
-                    </tr>
-                  ))}
-                  <tr style={{ backgroundColor: "gray" }}>
-                    <td> </td>
-                    <td>
-                      <b style={{ color: "white" }}>Total: </b>
-                    </td>
-                    <td>
-                      <b style={{ color: "white" }}> {handleSumTotal()}</b>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </div>
+          <TablaProductos />
         </div>
       </Container>
       <Footer />

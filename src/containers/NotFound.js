@@ -8,14 +8,23 @@ const NotFound = () => {
   return (
     <>
       <Header />
-      <div className="padding-top">
-        <AnimationTxt />
-        <img
-          src={PhotoError}
+      <div className="padding-top padding-bottom">
+        <div
           style={{
-            borderRadius: "20px ",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            justifyItems: "center",
           }}
-        />
+        >
+          <AnimationTxt />
+          <img
+            src={PhotoError}
+            style={{
+              borderRadius: "20px ",
+            }}
+          />
+        </div>
       </div>
       <Footer />
     </>

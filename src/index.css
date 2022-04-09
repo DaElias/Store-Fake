@@ -4,7 +4,10 @@ html{
 .padding-top{
   padding-top: 90px;
 }
+.padding-bottom{
+  padding-bottom: 90px;
 
+}
 .link-Style-rout{
   text-decoration: none;
 }
@@ -13,8 +16,6 @@ html{
   flex-direction: row;
   flex-wrap: wrap;
   padding-bottom: 40px;
-}
-.btn-comprar {
 }
 .container-product {
   width: 18rem;
