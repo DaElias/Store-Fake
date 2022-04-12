@@ -5,14 +5,14 @@ import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import TablaProductos from "../Components/TablaProductos";
 import AppContex from "../context/AppContex";
-import Alerta from "../Components/Alerta";
+import InformationEnvio from "../Components/InformationEnvio";
 const Payment = () => {
   const {
     handleSumTotal,
     state: { buyer, cart },
     newOrder,
   } = useContext(AppContex);
-  
+  const [validar, setValidar] = useState(false);
 
   const paymentHandleSuccess = (data) => {
     if (data.status === "COMPLETED") {
@@ -34,6 +34,9 @@ const Payment = () => {
               <Col>
                 <TablaProductos />
               </Col>
+              <Col>
+                <InformationEnvio buyer={buyer} setValidar={setValidar} />
+              </Col>
               <Col
                 style={{
                   display: "flex",
@@ -42,14 +45,12 @@ const Payment = () => {
                   alignItems: "center",
                 }}
               >
-                {handleSumTotal() > 1 ? (
+                {handleSumTotal() > 1 && validar ? (
                   <>
                     <PaypalPay
                       paymentHandleSuccess={paymentHandleSuccess}
                       handleSumTotal={handleSumTotal}
                     />
-
-                    
                   </>
                 ) : (
                   <button className="btn-pagar" size="lg" disabled>

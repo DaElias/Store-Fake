@@ -12,7 +12,7 @@ const Checkout = () => {
   const {
     state: { cart },
     removeFromCart,
-    handleSumTotal
+    handleSumTotal,
   } = useContext(AppContex);
   const [show, setShow] = useState(false);
 
@@ -43,6 +43,7 @@ const Checkout = () => {
       <Header />
       <Container>
         <Row className="Checkout-conteiner">
+      
           <Col>
             <h2>Lista de Pedidos</h2>
             <ListGroup>
@@ -103,6 +104,7 @@ const Checkout = () => {
               )}
             </ListGroup>
           </Col>
+
           <Col>
             <h2>
               Total a Pagar: $ <b> {`${handleSumTotal()}`}</b>

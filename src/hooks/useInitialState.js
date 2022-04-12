@@ -32,7 +32,6 @@ const useInitialState = () => {
     setState({ ...state, buyer: payload });
     // console.log("payload ", state.buyer);
   };
-  console.log(state);
   return {
     addToCard,
     removeFromCart,

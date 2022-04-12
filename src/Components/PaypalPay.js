@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Alerta from "../Components/Alerta";
-const currency = "USD";
 const style = { layout: "vertical" };
 
 const PaypalPay = ({ handleSumTotal, paymentHandleSuccess }) => {
@@ -50,3 +49,5 @@ const PaypalPay = ({ handleSumTotal, paymentHandleSuccess }) => {
 };
 
 export default PaypalPay;
+
+
