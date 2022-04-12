@@ -7,6 +7,7 @@ import TablaProductos from "../Components/TablaProductos";
 import AppContex from "../context/AppContex";
 import InformationEnvio from "../Components/InformationEnvio";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router";
 const Payment = () => {
   const {
     handleSumTotal,
@@ -14,7 +15,7 @@ const Payment = () => {
     newOrder,
   } = useContext(AppContex);
   const [validar, setValidar] = useState(false);
-
+  const nivegate = useNavigate();
   const paymentHandleSuccess = (data) => {
     if (data.status === "COMPLETED") {
       const nuevaOrden = {
@@ -23,6 +24,7 @@ const Payment = () => {
         payment: data,
       };
       newOrder(nuevaOrden);
+      setTimeout(() => nivegate("/checkout/success"), 5000);
     }
   };
   return (
