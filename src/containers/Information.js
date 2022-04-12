@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useEffect } from "react";
 import AppContex from "../context/AppContex";
+import { Helmet } from "react-helmet";
 import { Button, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
@@ -125,6 +126,9 @@ const Information = () => {
 
   return (
     <>
+     <Helmet>
+        <title>Fs - information</title>
+      </Helmet>
       <Header />
       <Container>
         <div className="Information padding-top padding-bottom">

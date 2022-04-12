@@ -6,6 +6,7 @@ import Header from "../Components/Header";
 import TablaProductos from "../Components/TablaProductos";
 import AppContex from "../context/AppContex";
 import InformationEnvio from "../Components/InformationEnvio";
+import { Helmet } from "react-helmet";
 const Payment = () => {
   const {
     handleSumTotal,
@@ -26,6 +27,9 @@ const Payment = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>FS - payment</title>
+      </Helmet>
       <Header />
       <Container className="padding-bottom">
         <div className="Payment padding-top">

@@ -4,6 +4,7 @@ import { Col, Row, ListGroup, Container, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPen } from "@fortawesome/free-solid-svg-icons";
+import { Helmet } from "react-helmet";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import "../styles/components/Checkout.css";
@@ -43,7 +44,9 @@ const Checkout = () => {
       <Header />
       <Container>
         <Row className="Checkout-conteiner">
-      
+          <Helmet>
+            <title>FS - Checkout</title>
+          </Helmet>
           <Col>
             <h2>Lista de Pedidos</h2>
             <ListGroup>
