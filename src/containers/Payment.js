@@ -1,12 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import PaypalPay from "../Components/PaypalPay";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import TablaProductos from "../Components/TablaProductos";
 import AppContex from "../context/AppContex";
+import Alerta from "../Components/Alerta";
 const Payment = () => {
-  const { handleSumTotal } = useContext(AppContex);
+  const {
+    handleSumTotal,
+    state: { buyer, cart },
+    newOrder,
+  } = useContext(AppContex);
+  
 
+  const paymentHandleSuccess = (data) => {
+    if (data.status === "COMPLETED") {
+      const nuevaOrden = {
+        buyer,
+        products: cart,
+        payment: data,
+      };
+      newOrder(nuevaOrden);
+    }
+  };
   return (
     <>
       <Header />
@@ -26,9 +43,14 @@ const Payment = () => {
                 }}
               >
                 {handleSumTotal() > 1 ? (
-                  <button className="btn-pagar" size="lg">
-                    Pagar
-                  </button>
+                  <>
+                    <PaypalPay
+                      paymentHandleSuccess={paymentHandleSuccess}
+                      handleSumTotal={handleSumTotal}
+                    />
+
+                    
+                  </>
                 ) : (
                   <button className="btn-pagar" size="lg" disabled>
                     Pagar

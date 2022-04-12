@@ -84,11 +84,11 @@ const Information = () => {
   };
 
   useEffect(() => {
-    console.log("Inicio el useEffect");
+    // console.log("Inicio el useEffect");
     if (localStorage.getItem("buyed")) {
-      console.log("El elemento existe!!");
+      // console.log("El elemento existe!!");
       const elemento = JSON.parse(localStorage.getItem("buyed"));
-      console.log(elemento);
+      // console.log(elemento);
       dispatch({ type: "LOCALSTORAGE_UPDATE", payload: elemento });
     }
   }, []);

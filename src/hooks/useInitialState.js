@@ -16,7 +16,12 @@ const useInitialState = () => {
       cart: state.cart.filter((item) => item.id !== payload.id),
     });
   };
-
+  const newOrder = (order) => {
+    setState({
+      ...state,
+      order: [...state.order, order],
+    });
+  };
   const handleSumTotal = () => {
     const reducer = (acumulador, currentValue) =>
       acumulador + currentValue.price;
@@ -24,21 +29,24 @@ const useInitialState = () => {
   };
   const addToBuyer = (payload) => {
     // setState({ ...state, buyer: [...state.buyer, payload] });
-    setState({...state,buyer:payload})
-    console.log("payload ", state.buyer);
+    setState({ ...state, buyer: payload });
+    // console.log("payload ", state.buyer);
   };
+  console.log(state);
   return {
     addToCard,
     removeFromCart,
     state,
     handleSumTotal,
     addToBuyer,
+    newOrder,
   };
 };
 
 export default useInitialState;
 
 const InitialState = {
+  order: [],
   cart: [
     {
       id: "5",
